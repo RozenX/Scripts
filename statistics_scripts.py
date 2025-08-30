@@ -41,3 +41,52 @@ else:
     epsilon_sq = (H - k + 1) / (n - k)
     print(f"Kruskal-Wallis H: {H:.4f}, p-value: {kruskal_result.pvalue:.4f}")
     print(f"Estimated Omega Squared (ε²): {epsilon_sq:.4f}")
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import scipy.stats as stats
+
+# Function to create a bar chart
+def create_bar_chart(categories, values, title="Bar Chart"):
+    plt.figure(figsize=(8, 5))
+    sns.barplot(x=categories, y=values, palette="viridis")
+    plt.title(title)
+    plt.xlabel("Categories")
+    plt.ylabel("Values")
+    plt.tight_layout()
+    plt.show()
+
+# Function to create a scatter plot
+def create_scatter_plot(x, y, title="Scatter Plot"):
+    plt.figure(figsize=(8, 5))
+    sns.scatterplot(x=x, y=y, color="dodgerblue", edgecolor="black")
+    plt.title(title)
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-axis")
+    plt.tight_layout()
+    plt.show()
+
+# Function to create a Q-Q plot
+def create_qq_plot(data, title="Q-Q Plot"):
+    plt.figure(figsize=(6, 6))
+    stats.probplot(data, dist="norm", plot=plt)
+    plt.title(title)
+    plt.tight_layout()
+    plt.show()
+
+# Example usage
+if __name__ == "__main__":
+    # Bar chart
+    categories = ['A', 'B', 'C', 'D']
+    values = [23, 45, 12, 36]
+    create_bar_chart(categories, values)
+
+    # Scatter plot
+    x = np.random.rand(50)
+    y = x * 2 + np.random.normal(0, 0.1, 50)
+    create_scatter_plot(x, y)
+
+    # Q-Q plot
+    data = np.random.normal(loc=0, scale=1, size=100)
+    create_qq_plot(data)
